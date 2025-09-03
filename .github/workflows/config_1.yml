@@ -1,0 +1,31 @@
+name: Run Config V1 on feature_1 merge
+
+# This workflow is triggered ONLY when a pull request is closed.
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - 'main'
+
+jobs:
+  run-on-feature-1-merge:
+    runs-on: ubuntu-latest
+    
+    # This condition is the key. It checks three things:
+    # 1. Was the PR merged? (not just closed without merging)
+    # 2. Was the source branch 'feature_1'?
+    # 3. Was the target branch 'main'?
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'feature_1' && github.event.pull_request.base.ref == 'main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Notify and run config-v1
+        run: |
+          echo "Pull request from 'feature_1' was merged into 'main'."
+          echo "Running config-1.yml logic now..."
+          #
+          # ADD YOUR STEPS TO RUN config-v1.yml HERE
+          # For example: az ml job create --file config-v1.yml
+          #

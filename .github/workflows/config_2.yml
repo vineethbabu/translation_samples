@@ -1,0 +1,27 @@
+name: Run Config V2 on feature_2 merge
+
+# This workflow is also triggered ONLY when a pull request is closed.
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - 'main'
+
+jobs:
+  run-on-feature-2-merge:
+    runs-on: ubuntu-latest
+    
+    # This condition checks for the 'feature_2' source branch.
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'feature_2' && github.event.pull_request.base.ref == 'main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Notify and run config-v2
+        run: |
+          echo "Pull request from 'feature_2' was merged into 'main'."
+          echo "Running config-2.yml logic now..."
+          #
+          # ADD YOUR STEPS TO RUN config-v2.yml HERE
+          #

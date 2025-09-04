@@ -26,4 +26,4 @@ jobs:
         run: |
           echo "env=${{ inputs.env }}"
           echo "version=${{ inputs.version }}"
-          echo "dry_run=${{ inputs.dry_run }
+          echo "dry_run=${{ inputs.dry_run }}"

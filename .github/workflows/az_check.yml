@@ -2,9 +2,9 @@ name: Validate Azure Connection
 
 # This workflow runs on any push to the main branch
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 jobs:

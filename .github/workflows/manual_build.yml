@@ -1,0 +1,29 @@
+
+name: Manual build
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Target environment (dev|qa|prod)"
+        required: true
+        default: dev
+      version:
+        description: "Release version"
+        required: false
+        default: latest
+      dry_run:
+        description: "Do a dry run? (true|false)"
+        required: false
+        default: "true"   # string, not boolean
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo chosen inputs
+        run: |
+          echo "env=${{ inputs.env }}"
+          echo "version=${{ inputs.version }}"
+          echo "dry_run=${{ inputs.dry_run }}"
